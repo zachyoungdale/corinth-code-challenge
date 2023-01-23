@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
+import Search from "./components/Search";
+import CharacterList from "./components/CharacterList";
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+
+  const [search, setSearch] = useState("");
+
+  // useEffect(() => {
+  //   fetchCharacters();
+  // }, []);
+
+  // const fetchCharacters = async () => {
+  //   let characterArray = [];
+  //   for (let i = 1; i < 10; i++) {
+  //     fetch(`https://swapi.dev/api/people/?page=${i}`)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         characterArray = [...characterArray, ...data.results];
+  //       });
+  //   }
+  //   setCharacters(characterArray);
+  //   setLoading(false);
+  // };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Search
+        setSearch={setSearch}
+        search={search}
+        setCharacters={setCharacters}
+      />
+      <CharacterList characters={characters} />
     </div>
   );
 }
