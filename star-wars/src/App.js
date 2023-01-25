@@ -6,25 +6,13 @@ import CharacterList from "./components/CharacterList";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [search, setSearch] = useState("Luke Skywalker");
 
-  const [search, setSearch] = useState("");
-
-  // useEffect(() => {
-  //   fetchCharacters();
-  // }, []);
-
-  // const fetchCharacters = async () => {
-  //   let characterArray = [];
-  //   for (let i = 1; i < 10; i++) {
-  //     fetch(`https://swapi.dev/api/people/?page=${i}`)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         characterArray = [...characterArray, ...data.results];
-  //       });
-  //   }
-  //   setCharacters(characterArray);
-  //   setLoading(false);
-  // };
+  useEffect(() => {
+    fetch(`https://swapi.dev/api/people/?search=${search}`)
+      .then((response) => response.json())
+      .then((character) => setCharacters(character.results));
+  }, []);
 
   return (
     <div>
